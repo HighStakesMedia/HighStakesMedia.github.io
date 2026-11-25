@@ -201,7 +201,7 @@ var HSM = {
   /* ---------- Section pages ---------- */
   var sectionName = document.body.getAttribute("data-section");
   if (sectionName) {
-    var inSection = articles.filter(function (a) { return a.section === sectionName; });
+    var inSection = articles.filter(function (a) { return a.section === sectionName || (a.also || []).indexOf(sectionName) !== -1; });
     if (inSection.length) $("sectionList").innerHTML = inSection.map(listStory).join("");
   }
   /* ---------- Article pages ---------- */

@@ -16,6 +16,8 @@
     section   Which section page it appears on. Use one of these exactly:
               "World", "Zenchou", "Business", "Conflicts", "Politics",
               "Investigations", "Opinion", "Life & Arts"
+    also      Optional extra sections it also appears on, e.g. ["Politics"].
+              The article's tag and "More from" still use "section".
     summary   One-sentence teaser
     author    Byline name
     image     Optional picture file, e.g. "images/pavilion.png"
@@ -51,6 +53,7 @@ window.ARTICLES = [
     url: "sanmittai-relief-tournament-grounds.html",
     date: "2026-11-25",
     section: "Zenchou",
+    also: ["Politics"],
     summary: "As the city struggles to answer for last week's outbreak, the Sternritter and Noragami have set up relief tents on the ruined tournament grounds, and say they intend to stay.",
     author: "Kivriel",
     image: "images/sanmittai-relief-sunset.jpg",
