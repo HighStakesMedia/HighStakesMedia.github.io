@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  /* Apply saved theme before the page draws, so there is no flash. Dark is the default. */
+  try { if (localStorage.getItem("hsm-theme") === "light") document.documentElement.setAttribute("data-theme", "light"); } catch (e) {}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27 fill=%27%23d4af37%27%3E%E2%99%A0%3C/text%3E%3C/svg%3E">
+<title>World — High Stakes Media</title>
+<meta name="description" content="High Stakes Media: independent reporting on the Spiritual Adepts of Zenchou.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="world" data-section="World">
+<div id="site-header"></div>
+
+<main>
+  <div class="wrap grid">
+    <div>
+      <div class="page-head">
+        <span class="tag">Section</span>
+        <h1>World</h1>
+        <p>News from beyond Zenchou&#x27;s borders and the powers that shape the wider world.</p>
+      </div>
+      <!-- Fills itself with every article in articles.js whose section is "World" -->
+      <div id="sectionList"><p class="empty">No World stories yet. Check back soon.</p></div>
+    </div>
+    <aside id="site-sidebar"></aside>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="articles.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

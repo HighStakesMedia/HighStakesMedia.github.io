@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  /* Apply saved theme before the page draws, so there is no flash. Dark is the default. */
+  try { if (localStorage.getItem("hsm-theme") === "light") document.documentElement.setAttribute("data-theme", "light"); } catch (e) {}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27 fill=%27%23d4af37%27%3E%E2%99%A0%3C/text%3E%3C/svg%3E">
+<title>Our Staff — High Stakes Media</title>
+<meta name="description" content="High Stakes Media: independent reporting on the Spiritual Adepts of Zenchou.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="staff">
+<div id="site-header"></div>
+
+<main>
+  <div class="wrap grid">
+    <div>
+      <div class="page-head">
+        <span class="tag">About</span>
+        <h1>Our Staff</h1>
+        <p>The people behind High Stakes Media.</p>
+      </div>
+      <div class="prose">
+        <p>High Stakes Media was founded in 2019 by Kivriel to report on the Spiritual Adepts of Zenchou without fear or favor.</p>
+      </div>
+      <div class="staff">
+        <div class="staff-card">
+          <div class="suit">♠</div>
+          <div class="role">Owner &amp; Publisher · Founder</div>
+          <h3>Kivriel</h3>
+          <p>Founded High Stakes Media in 2019.</p>
+        </div>
+        <!-- To add a staff member, copy this block (remove the comment marks), and fill it in:
+        <div class="staff-card">
+          <div class="suit">♥</div>
+          <div class="role">Senior Correspondent</div>
+          <h3>Name</h3>
+          <p>A sentence about them.</p>
+        </div>
+        -->
+      </div>
+    </div>
+    <aside id="site-sidebar"></aside>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="articles.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

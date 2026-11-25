@@ -7,236 +7,16 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="articles.js"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27 fill=%27%23d4af37%27%3E%E2%99%A0%3C/text%3E%3C/svg%3E">
 <title>High Stakes Media — News from Zenchou</title>
 <meta name="description" content="High Stakes Media: independent reporting on the Spiritual Adepts of Zenchou.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    color-scheme: dark;
-    --ink: #ececef;         /* main text */
-    --body: #c4c4ca;        /* paragraph text */
-    --paper: #121214;       /* page background */
-    --surface: #1b1b1f;     /* cards, boxes */
-    --deep: #0a0a0b;        /* top bar, footer */
-    --muted: #9a9aa3;
-    --rule: #2c2c31;
-    --accent: #d4af37;      /* High Stakes gold */
-    --accent-dark: #7d0c15; /* only used by the medicine hall ad */
-    --silver: #c3c7ce;
-    --on-accent: #121214;   /* text on gold */
-    --gold: #b8892b;
-    --serif-display: 'Playfair Display', Georgia, serif;
-    --serif: 'Source Serif 4', Georgia, serif;
-    --sans: 'Inter', system-ui, -apple-system, sans-serif;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--paper); color: var(--ink); font-family: var(--serif); line-height: 1.55; }
-  a { color: inherit; text-decoration: none; }
-  a:hover h2, a:hover h3, a:hover h4 { color: var(--accent); }
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
-
-  /* ---------- Top bar ---------- */
-  .topbar { background: var(--deep); color: #cfcfd4; font: 600 12px var(--sans); letter-spacing: .04em; }
-  .topbar .wrap { display: flex; justify-content: space-between; padding-top: 8px; padding-bottom: 8px; gap: 12px; flex-wrap: wrap; }
-
-  /* ---------- Masthead ---------- */
-  .masthead { text-align: center; padding: 28px 0 18px; border-bottom: 1px solid var(--rule); }
-  .masthead .kicker { font: 600 11px var(--sans); letter-spacing: .25em; text-transform: uppercase; color: var(--muted); }
-  .logo { font-family: var(--serif-display); font-weight: 900; font-size: clamp(40px, 8vw, 78px); line-height: 1; margin: 8px 0 6px; letter-spacing: -.01em; }
-  .logo { color: var(--silver); }
-  .logo span { color: var(--accent); }
-  .suits { font-size: 18px; letter-spacing: .6em; margin: 4px 0 8px; padding-left: .6em; }
-  .suits .s { color: var(--silver); }
-  .suits .g { color: var(--accent); }
-  .tagline { font-style: italic; color: var(--muted); font-size: 15px; }
-
-  /* ---------- Nav ---------- */
-  nav { border-bottom: 3px double var(--ink); background: var(--paper); position: sticky; top: 0; z-index: 10; }
-  nav ul { list-style: none; display: flex; justify-content: center; gap: 4px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
-  nav ul::-webkit-scrollbar { display: none; }
-  nav a { display: block; padding: 12px 14px; font: 700 13px var(--sans); text-transform: uppercase; letter-spacing: .06em; }
-  nav a:hover, nav a.active { color: var(--accent); box-shadow: inset 0 -3px 0 var(--accent); }
-
-  /* ---------- Breaking ticker ---------- */
-  .ticker { display: flex; align-items: stretch; background: var(--surface); border-bottom: 1px solid var(--rule); overflow: hidden; font: 14px var(--sans); }
-  .ticker .label { background: var(--accent); color: var(--on-accent); font-weight: 700; padding: 9px 14px; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; flex-shrink: 0; display: flex; align-items: center; }
-  .ticker .track { display: flex; gap: 48px; padding: 9px 0; animation: scroll 40s linear infinite; white-space: nowrap; }
-  .ticker .track span::before { content: "♠ "; color: var(--silver); }
-  .ticker .track span:nth-child(4n+2)::before { content: "♥ "; color: var(--accent); }
-  .ticker .track span:nth-child(4n+3)::before { content: "♦ "; color: var(--silver); }
-  .ticker .track span:nth-child(4n+4)::before { content: "♣ "; color: var(--accent); }
-  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .ticker .track { animation: none; } }
-
-  /* ---------- Layout ---------- */
-  main { padding: 28px 0 40px; }
-  .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 36px; }
-  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
-
-  .section-title { font: 700 13px var(--sans); text-transform: uppercase; letter-spacing: .12em; border-top: 3px solid var(--ink); padding-top: 8px; margin: 32px 0 16px; display: flex; justify-content: space-between; }
-  .section-title a { color: var(--accent); font-size: 12px; }
-
-  .tag { display: inline-block; font: 700 11px var(--sans); text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: 6px; }
-  .tag.exclusive { background: var(--accent); color: var(--on-accent); padding: 2px 7px; }
-  .byline { font: 13px var(--sans); color: var(--muted); margin-top: 8px; }
-  .byline strong { color: var(--ink); }
-
-  /* Art placeholders — swap for <img> tags when you have pictures */
-  .art { aspect-ratio: 16/9; border-radius: 2px; position: relative; overflow: hidden; margin-bottom: 14px; }
-  .art::after { content: attr(data-caption); position: absolute; left: 0; bottom: 0; right: 0; padding: 6px 10px; font: 11px var(--sans); color: rgba(255,255,255,.85); background: linear-gradient(transparent, rgba(0,0,0,.55)); }
-  .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .art-1 { background: radial-gradient(circle at 70% 35%, #f6c66b 0, #d9622b 18%, #5a1420 48%, #140b14 100%); }
-  .art-2 { background: linear-gradient(160deg, #23314d, #0e1424 60%, #4b6a8f); }
-  .art-3 { background: radial-gradient(circle at 30% 60%, #e7d7a8, #8e7440 40%, #2b2216); }
-  .art-4 { background: linear-gradient(135deg, #3d1c4f, #a3416a 55%, #f0a06a); }
-  .art-5 { background: radial-gradient(circle at 50% 50%, #9be3d0, #2a6f6a 45%, #0f2427); }
-
-  /* Lead story */
-  .lead h2 { font-family: var(--serif-display); font-size: clamp(28px, 4.2vw, 44px); line-height: 1.08; margin-bottom: 10px; }
-  .lead .dek { font-size: 19px; color: var(--body); }
-  .lead .art { aspect-ratio: 16/8; }
-
-  /* Secondary cards */
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  @media (max-width: 860px) { .cards { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 520px) { .cards { grid-template-columns: 1fr; } }
-  .card h3 { font-family: var(--serif-display); font-size: 21px; line-height: 1.2; }
-  .card p { font-size: 15px; color: var(--body); margin-top: 6px; }
-
-  /* List stories */
-  .list-story { display: grid; grid-template-columns: 160px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
-  .list-story .art { margin: 0; aspect-ratio: 4/3; }
-  .list-story h4 { font-family: var(--serif-display); font-size: 20px; line-height: 1.2; }
-  .list-story p { font-size: 15px; color: var(--body); margin-top: 4px; }
-  @media (max-width: 520px) { .list-story { grid-template-columns: 100px 1fr; gap: 12px; } .list-story p { display: none; } }
-
-  /* ---------- Sidebar ---------- */
-  aside > * + * { margin-top: 28px; }
-  .most-read ol { list-style: none; counter-reset: n; }
-  .most-read li { counter-increment: n; display: grid; grid-template-columns: 38px 1fr; padding: 12px 0; border-bottom: 1px solid var(--rule); font-weight: 600; line-height: 1.3; }
-  .most-read li::before { content: counter(n); font: 900 28px var(--serif-display); color: var(--accent); line-height: 1; }
-
-  .opinion { background: var(--surface); border: 1px solid var(--rule); padding: 18px; }
-  .opinion blockquote { font: italic 19px/1.35 var(--serif); margin: 6px 0 10px; }
-  .opinion blockquote::before { content: "“"; font: 900 48px/0 var(--serif-display); color: var(--accent); vertical-align: -18px; margin-right: 2px; }
-
-  /* In-universe ads */
-  .ad { position: relative; text-align: center; padding: 22px 18px; border: 1px solid var(--rule); }
-  .ad .ad-label { position: absolute; top: 4px; right: 8px; font: 600 9px var(--sans); letter-spacing: .15em; color: var(--muted); text-transform: uppercase; }
-  .ad-1 { background: #1d1410; color: #f3e3c3; border-color: #3b2a1f; }
-  .ad-1 h5 { font: 900 26px var(--serif-display); color: var(--gold); letter-spacing: .02em; }
-  .ad-1 p { font-size: 14px; margin: 6px 0 12px; }
-  .ad-1 .btn { display: inline-block; border: 1px solid var(--gold); color: var(--gold); padding: 6px 14px; font: 700 12px var(--sans); text-transform: uppercase; letter-spacing: .1em; }
-  .ad-2 { background: #13241e; border-color: #1f3a30; }
-  .ad-2 h5 { font: 700 20px var(--sans); color: #6fcfa8; }
-  .ad-2 p { font-size: 14px; color: #a9c9bc; margin-top: 6px; }
-  .ad-banner { margin: 34px 0 0; background: linear-gradient(90deg, #2a0d12, #6b1520); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 16px; text-align: left; flex-wrap: wrap; border: none; }
-  .ad-banner h5 { font: 900 24px var(--serif-display); }
-  .ad-banner p { font-size: 14px; opacity: .85; }
-  .ad-banner .btn { background: #fff; color: var(--accent-dark); padding: 8px 16px; font: 700 12px var(--sans); text-transform: uppercase; letter-spacing: .1em; }
-  .ad-banner .ad-label { color: rgba(255,255,255,.6); }
-
-  /* Newsletter */
-  .newsletter { background: var(--surface); border: 1px solid var(--rule); color: var(--ink); padding: 20px; }
-  .newsletter h5 { font: 700 20px var(--serif-display); }
-  .newsletter p { font-size: 14px; color: var(--muted); margin: 6px 0 12px; }
-  .newsletter form { display: flex; }
-  .newsletter input { flex: 1; min-width: 0; padding: 9px 10px; border: 1px solid var(--rule); background: var(--deep); color: var(--ink); font: 14px var(--sans); }
-  .newsletter button { background: var(--accent); color: var(--on-accent); border: none; padding: 0 14px; font: 700 12px var(--sans); text-transform: uppercase; cursor: pointer; }
-
-  /* ---------- Footer ---------- */
-  footer { background: var(--deep); border-top: 1px solid var(--rule); color: #a9a9b0; font: 14px var(--sans); padding: 36px 0 24px; }
-  footer .logo { font-size: 34px; color: #c3c7ce; margin: 0 0 6px; text-align: left; }
-  footer .cols { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px; }
-  @media (max-width: 720px) { footer .cols { grid-template-columns: 1fr 1fr; } }
-  footer h6 { color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; }
-  footer li { list-style: none; margin-bottom: 6px; }
-  footer a:hover { color: #fff; }
-  footer .legal { border-top: 1px solid #333; margin-top: 28px; padding-top: 16px; font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-
-  /* ---------- Light theme (used when the toggle is switched) ---------- */
-  html[data-theme="light"] {
-    color-scheme: light;
-    --ink: #16161a;
-    --body: #3a3a40;
-    --paper: #fbfaf7;
-    --surface: #ffffff;
-    --deep: #16161a;
-    --muted: #6b6b72;
-    --rule: #dedbd3;
-    --accent: #9a7420;
-    --silver: #6e737c;
-    --on-accent: #ffffff;
-  }
-  html[data-theme="light"] .ad-2 { background: #eef5f1; border-color: #d3e6dc; }
-  html[data-theme="light"] .ad-2 h5 { color: #1f5c48; }
-  html[data-theme="light"] .ad-2 p { color: #355; }
-  html[data-theme="light"] .newsletter input { background: #fff; }
-
-  /* Theme toggle button */
-  .theme-toggle { background: none; border: 1px solid #44444a; color: #cfcfd4; font: 600 12px var(--sans); padding: 3px 10px; border-radius: 999px; cursor: pointer; }
-  .theme-toggle:hover { border-color: var(--accent); color: #fff; }
-  .topbar .right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  body { transition: background-color .2s, color .2s; }
-
-  /* Open ad slots ("Your ad here") */
-  .ad-open { background: var(--surface); border: 2px dashed var(--accent); }
-  .ad-open .ad-suits { color: var(--silver); letter-spacing: .4em; font-size: 14px; margin-bottom: 6px; }
-  .ad-open h5 { font: 900 24px var(--serif-display); color: var(--accent); }
-  .ad-open p { font-size: 14px; color: var(--body); margin: 6px 0 12px; }
-  .ad-open .btn { display: inline-block; background: var(--accent); color: var(--on-accent); padding: 7px 14px; font: 700 12px var(--sans); text-transform: uppercase; letter-spacing: .1em; }
-  .ad-open .btn:hover { filter: brightness(1.1); }
-  .ad-open-banner { margin-top: 34px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; text-align: left; }
-  .ad-open-banner p { margin-bottom: 0; }
-  .empty { color: var(--muted); font: italic 15px var(--serif); padding: 12px 0; }
-  .ticker[hidden], #leadStory[hidden], #topStories[hidden] { display: none; }
-  .lead .art .ph, .card .art .ph { display: none; }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<div class="topbar">
-  <div class="wrap">
-    <span id="today">Zenchou Edition</span>
-    <span class="right">
-      <span class="weather" id="weather">☁ Zenchou City · Overcast, 14°C</span>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme">☀ Light</button>
-    </span>
-  </div>
-</div>
-
-<header class="masthead">
-  <div class="wrap">
-    <div class="kicker">Est. 2019</div>
-    <a href="index.html"><div class="logo">High <span>Stakes</span> Media</div></a>
-    <div class="suits" aria-hidden="true"><span class="s">♠</span><span class="g">♥</span><span class="s">♦</span><span class="g">♣</span></div>
-    <div class="tagline">All in on the truth.</div>
-  </div>
-</header>
-
-<nav>
-  <ul>
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="#">World</a></li>
-    <li><a href="#">Zenchou</a></li>
-    <li><a href="#">Business</a></li>
-    <li><a href="#">Conflicts</a></li>
-    <li><a href="#">Politics</a></li>
-    <li><a href="#">Investigations</a></li>
-    <li><a href="#">Opinion</a></li>
-    <li><a href="#">Life &amp; Arts</a></li>
-  </ul>
-</nav>
-
-<!-- Fills itself from articles.js (articles marked breaking: true). Hidden when there are none. -->
-<div class="ticker" id="ticker" aria-label="Breaking news" hidden>
-  <div class="label">Breaking</div>
-  <div class="track" id="tickerTrack"></div>
-</div>
+<body data-page="home">
+<div id="site-header"></div>
 
 <main>
   <div class="wrap grid">
@@ -260,7 +40,7 @@
           <h5>Your Business Here</h5>
           <p>Put your shop, dojo, or tea house in front of every High Stakes Media reader.</p>
         </div>
-        <a class="btn" href="#advertise">Advertise With Us</a>
+        <a class="btn" href="advertise.html">Advertise With Us</a>
       </div>
 
       <div class="section-title">Latest</div>
@@ -283,175 +63,28 @@
         <div class="ad-suits" aria-hidden="true">♠ ♥ ♦ ♣</div>
         <h5>Your Ad Here</h5>
         <p>Local businesses of Zenchou: reach the readers who follow the adepts.</p>
-        <a class="btn" href="#advertise">Reserve This Spot</a>
+        <a class="btn" href="advertise.html">Reserve This Spot</a>
       </div>
 
-      <div class="opinion">
-        <span class="tag">Opinion</span>
-        <blockquote>Power without accountability is just another word for fear.</blockquote>
-        <p class="byline">— <strong>Your Journalist</strong>, on the registration act</p>
-      </div>
+      <!-- Opinion box: newest article in the Opinion section. Hidden if none. -->
+      <div class="opinion" id="opinionBox" hidden></div>
 
       <!-- Ad slot: sidebar (bottom) -->
       <div class="ad ad-open">
         <span class="ad-label">Ad Space Available</span>
         <h5>Your Ad Here</h5>
         <p>Talisman shops, healers, dojos and more. Contact us to feature your business.</p>
-        <a class="btn" href="#advertise">Learn More</a>
+        <a class="btn" href="advertise.html">Learn More</a>
       </div>
 
-      <div class="newsletter">
-        <h5>The Morning Dispatch</h5>
-        <p>Zenchou's biggest stories, direct to you via the SuperNat.</p>
-        <form onsubmit="event.preventDefault(); this.innerHTML='<p style=&quot;color:inherit;margin:0&quot;>You're subscribed. ✓</p>';">
-          <input type="text" placeholder="Your SuperNat handle" aria-label="Your SuperNat handle">
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
+      <div class="newsletter" id="newsletter"></div>
     </aside>
 
   </div>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="cols">
-      <div>
-        <div class="logo">High <span style="color:#d4af37">Stakes</span> Media</div>
-        <div class="suits" aria-hidden="true" style="text-align:left;padding-left:0;font-size:15px"><span style="color:#c3c7ce">♠</span><span style="color:#d4af37">♥</span><span style="color:#c3c7ce">♦</span><span style="color:#d4af37">♣</span></div>
-        <p>Founded in 2019 by Kivriel. Independent reporting on the Spiritual Adepts of Zenchou.</p>
-      </div>
-      <div>
-        <h6>Sections</h6>
-        <ul><li><a href="#">World</a></li><li><a href="#">Zenchou</a></li><li><a href="#">Business</a></li><li><a href="#">Conflicts</a></li></ul>
-      </div>
-      <div>
-        <h6>About</h6>
-        <ul><li><a href="#">Our Staff</a></li><li><a href="#">Submit a Tip</a></li><li><a href="#advertise" id="advertise">Advertise</a></li><li><a href="#">Corrections</a></li></ul>
-      </div>
-    </div>
-    <div class="legal">
-      <span>© 2019 High Stakes Media · Kivriel, Owner &amp; Publisher. All rights reserved by the Zenchou Press Guild.</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-  (function () {
-    var root = document.documentElement, btn = document.getElementById("themeToggle");
-    function label() {
-      var light = root.getAttribute("data-theme") === "light";
-      btn.textContent = light ? "☾ Dark" : "☀ Light";
-    }
-    btn.addEventListener("click", function () {
-      if (root.getAttribute("data-theme") === "light") root.removeAttribute("data-theme");
-      else root.setAttribute("data-theme", "light");
-      try { localStorage.setItem("hsm-theme", root.getAttribute("data-theme") || "dark"); } catch (e) {}
-      label();
-    });
-    label();
-  })();
-</script>
-<script>
-  /* Weather changes every 6 hours. Everyone sees the same weather in the same 6-hour window. */
-  (function () {
-    var conditions = [
-      ["☀", "Clear skies"], ["🌤", "Mostly sunny"], ["⛅", "Partly cloudy"], ["☁", "Overcast"],
-      ["🌦", "Passing showers"], ["🌧", "Steady rain"], ["⛈", "Thunderstorms"], ["🌫", "Morning fog"],
-      ["🌬", "Strong winds"], ["❄", "Light snow"]
-    ];
-    var block = Math.floor(Date.now() / (6 * 60 * 60 * 1000));
-    function rand(n) { var x = Math.sin(block * 9301 + n * 49297) * 233280; return x - Math.floor(x); }
-    var c = conditions[Math.floor(rand(1) * conditions.length)];
-    var temp = Math.round(4 + rand(2) * 24);           /* 4 to 28 °C */
-    if (c[1] === "Light snow") temp = Math.round(-4 + rand(3) * 5);
-    document.getElementById("weather").textContent = c[0] + " Zenchou City · " + c[1] + ", " + temp + "°C";
-  })();
-</script>
-<script>
-  /* Builds Latest, Most Read and the Breaking bar from the list in articles.js */
-  (function () {
-    var list = (window.ARTICLES || []).slice().filter(function (a) { return a && a.title && a.url; });
-    list.sort(function (a, b) { return (b.date || "").localeCompare(a.date || ""); }); /* newest first */
-
-    function esc(t) { var d = document.createElement("div"); d.textContent = t == null ? "" : t; return d.innerHTML; }
-    function niceDate(iso) {
-      if (!iso) return "";
-      var d = new Date(iso + "T12:00:00");
-      return isNaN(d) ? esc(iso) : d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-    }
-
-
-    /* Front-page lead: newest article marked lead: true */
-    function artBox(a, cls) {
-      return a.image
-        ? '<div class="art" data-caption="' + esc(a.caption || "") + '"><img src="' + esc(a.image) + '" alt=""></div>'
-        : '<div class="art ' + cls + '"></div>';
-    }
-    function tagFor(a) {
-      if (a.exclusive) return '<span class="tag exclusive">Exclusive</span>';
-      return a.section ? '<span class="tag">' + esc(a.section) + '</span>' : '';
-    }
-    var lead = list.filter(function (a) { return a.lead; })[0];
-    if (lead) {
-      var el = document.getElementById("leadStory");
-      el.innerHTML = '<a href="' + esc(lead.url) + '">' + artBox(lead, "art-1") + tagFor(lead) +
-        '<h2>' + esc(lead.title) + '</h2>' +
-        (lead.summary ? '<p class="dek">' + esc(lead.summary) + '</p>' : '') +
-        '<p class="byline">' + (lead.author ? 'By <strong>' + esc(lead.author) + '</strong> · ' : '') + niceDate(lead.date) + '</p></a>';
-      el.hidden = false;
-    }
-
-    /* Top Stories: up to 3 newest marked topStory: true */
-    var tops = list.filter(function (a) { return a.topStory && a !== lead; }).slice(0, 3);
-    if (tops.length) {
-      document.getElementById("topCards").innerHTML = tops.map(function (a, i) {
-        return '<article class="card"><a href="' + esc(a.url) + '">' + artBox(a, "art-" + (2 + i)) + tagFor(a) +
-          '<h3>' + esc(a.title) + '</h3>' + (a.summary ? '<p>' + esc(a.summary) + '</p>' : '') + '</a></article>';
-      }).join("");
-      document.getElementById("topStories").hidden = false;
-    }
-
-    /* Latest: newest 6 */
-    var latest = document.getElementById("latestList");
-    if (list.length) {
-      latest.innerHTML = list.slice(0, 6).map(function (a, i) {
-        var art = a.image
-          ? '<div class="art"><img src="' + esc(a.image) + '" alt=""></div>'
-          : '<div class="art art-' + (2 + (i % 4)) + '"></div>';
-        return '<article class="list-story">' +
-          '<a href="' + esc(a.url) + '">' + art + '</a>' +
-          '<a href="' + esc(a.url) + '">' +
-            (a.section ? '<span class="tag">' + esc(a.section) + '</span>' : '') +
-            '<h4>' + esc(a.title) + '</h4>' +
-            (a.summary ? '<p>' + esc(a.summary) + '</p>' : '') +
-            '<p class="byline">' + (a.author ? 'By <strong>' + esc(a.author) + '</strong> · ' : '') + niceDate(a.date) + '</p>' +
-          '</a></article>';
-      }).join("");
-    }
-
-    /* Most Read: articles with a mostRead rank (1 = top) first, then newest; top 5 */
-    var ranked = list.slice().sort(function (a, b) {
-      var ra = a.mostRead || 999, rb = b.mostRead || 999;
-      return ra - rb;
-    }).slice(0, 5);
-    if (ranked.length) {
-      document.getElementById("mostReadList").innerHTML = ranked.map(function (a) {
-        return '<li><a href="' + esc(a.url) + '">' + esc(a.title) + '</a></li>';
-      }).join("");
-      document.getElementById("mostReadEmpty").hidden = true;
-    }
-
-    /* Breaking bar: articles marked breaking: true */
-    var breaking = list.filter(function (a) { return a.breaking; });
-    if (breaking.length) {
-      var items = breaking.map(function (a) { return '<span><a href="' + esc(a.url) + '">' + esc(a.title) + '</a></span>'; }).join("");
-      var track = document.getElementById("tickerTrack");
-      track.innerHTML = items + items;                 /* doubled so the scroll loops smoothly */
-      track.style.animationDuration = Math.max(20, breaking.length * 10) + "s";
-      document.getElementById("ticker").hidden = false;
-    }
-  })();
-</script>
+<div id="site-footer"></div>
+<script src="articles.js"></script>
+<script src="site.js"></script>
 </body>
 </html>
