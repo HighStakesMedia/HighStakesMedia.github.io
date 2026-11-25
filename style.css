@@ -240,3 +240,8 @@
 .comment-head strong { color: var(--accent); }
 .comment-head span { color: var(--muted); font-size: 12px; }
 .comment p { margin-top: 4px; color: var(--body); font-size: 16px; }
+.handle-field { display: flex; align-items: stretch; border: 1px solid var(--rule); background: var(--paper); border-radius: 2px; }
+.handle-field:focus-within { outline: 2px solid var(--accent); outline-offset: -1px; }
+.handle-prefix { display: flex; align-items: center; padding: 0 2px 0 10px; color: var(--accent); font: 700 15px var(--sans); user-select: none; }
+.comment-form .handle-field input { border: none; padding-left: 2px; background: transparent; }
+.comment-form .handle-field input:focus { outline: none; }

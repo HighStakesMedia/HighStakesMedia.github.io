@@ -246,7 +246,8 @@ var HSM = {
       '<div class="section-title">Comments <span id="commentCount"></span></div>' +
       '<form class="comment-form" id="commentForm" novalidate>' +
         '<label for="cHandle">SuperNat handle <span class="req">required</span></label>' +
-        '<input id="cHandle" type="text" maxlength="31" placeholder="%YourHandle" autocomplete="nickname">' +
+        '<div class="handle-field"><span class="handle-prefix" aria-hidden="true">%</span>' +
+        '<input id="cHandle" type="text" maxlength="100" placeholder="Username" autocomplete="nickname" spellcheck="false" aria-label="SuperNat handle, after the %"></div>' +
         '<label for="cText">Comment</label>' +
         '<textarea id="cText" rows="4" maxlength="1500" placeholder="Join the conversation…" disabled></textarea>' +
         '<div class="comment-actions"><span class="comment-msg" id="cMsg"></span>' +
@@ -255,21 +256,25 @@ var HSM = {
       '<div id="commentList"></div>';
 
     var handle = $("cHandle"), text = $("cText"), post = $("cPost"), msg = $("cMsg");
-    function cleanHandle(v) {
-      v = (v || "").trim().replace(/\s+/g, "_");
-      if (v && v.charAt(0) !== "%") v = "%" + v;
-      return v;
+    /* The % is fixed in front of the box; readers type only the username.
+       Names are kept exactly as typed (emoji included), apart from trimming spaces at the ends. */
+    function chars(v) {   /* counts emoji as one character each */
+      if (window.Intl && Intl.Segmenter) return Array.from(new Intl.Segmenter().segment(v)).length;
+      return Array.from(v).length;
     }
-    function validHandle(v) { return /^%[A-Za-z0-9_]{2,30}$/.test(v); }
+    function cleanHandle(v) { return "%" + (v || "").replace(/^%+/, "").trim(); }
+    function validHandle(h) { var n = chars(h.slice(1)); return n >= 1 && n <= 32; }
     function update() {
       var ok = validHandle(cleanHandle(handle.value));
       text.disabled = !ok;
       post.disabled = !ok || !text.value.trim();
       text.placeholder = ok ? "Join the conversation…" : "Enter your SuperNat handle to comment";
     }
-    try { handle.value = localStorage.getItem("hsm-handle") || ""; } catch (e) {}
-    handle.addEventListener("input", update);
-    handle.addEventListener("blur", function () { if (handle.value.trim()) handle.value = cleanHandle(handle.value); update(); });
+    try { handle.value = (localStorage.getItem("hsm-handle") || "").replace(/^%/, ""); } catch (e) {}
+    handle.addEventListener("input", function () {
+      if (handle.value.charAt(0) === "%") handle.value = handle.value.replace(/^%+/, "");  /* the % is already there */
+      update();
+    });
     text.addEventListener("input", update);
     update();
 
@@ -300,7 +305,7 @@ var HSM = {
     $("commentForm").addEventListener("submit", function (e) {
       e.preventDefault();
       var h = cleanHandle(handle.value), b = text.value.trim();
-      if (!validHandle(h)) { msg.textContent = "Enter a valid SuperNat handle, like %Your_Handle."; return; }
+      if (!validHandle(h)) { msg.textContent = "Enter your SuperNat handle (up to 32 characters)."; return; }
       if (!b) return;
       if (!live) { msg.textContent = "Comments aren't connected yet."; return; }
       post.disabled = true; msg.textContent = "Posting…";
