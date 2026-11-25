@@ -20,7 +20,14 @@ var HSM = {
     { name: "Investigations", file: "investigations.html", blurb: "In-depth reporting on what the powerful would rather keep hidden." },
     { name: "Opinion",        file: "opinion.html",        blurb: "Commentary, columns and arguments from our writers and guests." },
     { name: "Life & Arts",    file: "life-arts.html",      blurb: "Culture, food, festivals, craft and the lighter side of Zenchou." }
-  ]
+  ],
+
+  /* Comments on article pages. They're saved in a free Supabase database.
+     Until these two are filled in, the comment box shows but can't post. */
+  comments: {
+    supabaseUrl: "",   /* e.g. "https://abcdefgh.supabase.co" */
+    supabaseKey: ""    /* the project's public "anon" key */
+  }
 };
 
 (function () {
@@ -196,5 +203,118 @@ var HSM = {
   if (sectionName) {
     var inSection = articles.filter(function (a) { return a.section === sectionName; });
     if (inSection.length) $("sectionList").innerHTML = inSection.map(listStory).join("");
+  }
+  /* ---------- Article pages ---------- */
+  if (page === "article") {
+    var here = decodeURIComponent(location.pathname.split("/").pop() || "");
+    var me = articles.filter(function (a) { return a.url === here; })[0];
+    if (me) {
+      /* Fill in anything the page left blank from this article's entry in articles.js */
+      function fill(id, html) { var el = $(id); if (el && !el.textContent.trim()) el.innerHTML = html; }
+      fill("articleSection", me.exclusive ? '<span class="tag exclusive">Exclusive</span>' : esc(me.section || ""));
+      fill("articleTitle", esc(me.title));
+      fill("articleDek", esc(me.summary || ""));
+      fill("articleByline", (me.author ? 'By <strong>' + esc(me.author) + '</strong> · ' : '') + niceDate(me.date));
+      if (document.title === "Article — High Stakes Media")
+        document.title = me.title + " — High Stakes Media";
+      var sec = HSM.categories.filter(function (c) { return c.name === me.section; })[0];
+      if (sec && $("articleSection") && !$("articleSection").querySelector("a") && !me.exclusive)
+        $("articleSection").innerHTML = '<a href="' + sec.file + '">' + esc(me.section) + '</a>';
+    }
+    ["articleSection", "articleDek"].forEach(function (id) { var el = $(id); if (el && !el.textContent.trim()) el.hidden = true; });
+
+    /* More from this section */
+    var more = articles.filter(function (a) { return me && a.section === me.section && a.url !== here; }).slice(0, 3);
+    if (more.length && $("moreList")) {
+      $("moreList").innerHTML = more.map(listStory).join("");
+      $("moreFrom").hidden = false;
+      $("moreTitle").textContent = "More from " + me.section;
+    }
+
+    setupComments(here.replace(/\.html$/, "") || "index");
+  }
+
+  /* ---------- Comments ---------- */
+  function setupComments(articleId) {
+    var box = $("comments");
+    if (!box) return;
+    var cfg = HSM.comments || {}, live = !!(cfg.supabaseUrl && cfg.supabaseKey);
+    var api = (cfg.supabaseUrl || "").replace(/\/$/, "") + "/rest/v1/comments";
+    var headers = { "apikey": cfg.supabaseKey, "Authorization": "Bearer " + cfg.supabaseKey, "Content-Type": "application/json" };
+
+    box.innerHTML =
+      '<div class="section-title">Comments <span id="commentCount"></span></div>' +
+      '<form class="comment-form" id="commentForm" novalidate>' +
+        '<label for="cHandle">SuperNat handle <span class="req">required</span></label>' +
+        '<input id="cHandle" type="text" maxlength="31" placeholder="%YourHandle" autocomplete="nickname">' +
+        '<label for="cText">Comment</label>' +
+        '<textarea id="cText" rows="4" maxlength="1500" placeholder="Join the conversation…" disabled></textarea>' +
+        '<div class="comment-actions"><span class="comment-msg" id="cMsg"></span>' +
+        '<button type="submit" id="cPost" disabled>Post Comment</button></div>' +
+      '</form>' +
+      '<div id="commentList"></div>';
+
+    var handle = $("cHandle"), text = $("cText"), post = $("cPost"), msg = $("cMsg");
+    function cleanHandle(v) {
+      v = (v || "").trim().replace(/\s+/g, "_");
+      if (v && v.charAt(0) !== "%") v = "%" + v;
+      return v;
+    }
+    function validHandle(v) { return /^%[A-Za-z0-9_]{2,30}$/.test(v); }
+    function update() {
+      var ok = validHandle(cleanHandle(handle.value));
+      text.disabled = !ok;
+      post.disabled = !ok || !text.value.trim();
+      text.placeholder = ok ? "Join the conversation…" : "Enter your SuperNat handle to comment";
+    }
+    try { handle.value = localStorage.getItem("hsm-handle") || ""; } catch (e) {}
+    handle.addEventListener("input", update);
+    handle.addEventListener("blur", function () { if (handle.value.trim()) handle.value = cleanHandle(handle.value); update(); });
+    text.addEventListener("input", update);
+    update();
+
+    function timeAgo(iso) {
+      var s = (Date.now() - new Date(iso).getTime()) / 1000;
+      if (s < 60) return "just now";
+      if (s < 3600) return Math.floor(s / 60) + "m ago";
+      if (s < 86400) return Math.floor(s / 3600) + "h ago";
+      return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    }
+    function render(rows) {
+      $("commentCount").textContent = rows.length ? "(" + rows.length + ")" : "";
+      $("commentList").innerHTML = rows.length ? rows.map(function (c) {
+        return '<div class="comment"><div class="comment-head"><strong>' + esc(c.handle) + '</strong>' +
+          '<span>' + timeAgo(c.created_at) + '</span></div><p>' + esc(c.body).replace(/\n/g, "<br>") + '</p></div>';
+      }).join("") : '<p class="empty">No comments yet. Be the first.</p>';
+    }
+
+    if (!live) {
+      $("commentList").innerHTML = '<p class="empty">Comments are not connected yet.</p>';
+    } else {
+      fetch(api + "?article=eq." + encodeURIComponent(articleId) + "&select=handle,body,created_at&order=created_at.asc", { headers: headers })
+        .then(function (r) { if (!r.ok) throw r; return r.json(); })
+        .then(render)
+        .catch(function () { $("commentList").innerHTML = '<p class="empty">Comments couldn\'t be loaded right now.</p>'; });
+    }
+
+    $("commentForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var h = cleanHandle(handle.value), b = text.value.trim();
+      if (!validHandle(h)) { msg.textContent = "Enter a valid SuperNat handle, like %Your_Handle."; return; }
+      if (!b) return;
+      if (!live) { msg.textContent = "Comments aren't connected yet."; return; }
+      post.disabled = true; msg.textContent = "Posting…";
+      fetch(api, { method: "POST", headers: Object.assign({ "Prefer": "return=representation" }, headers),
+        body: JSON.stringify({ article: articleId, handle: h, body: b }) })
+        .then(function (r) { if (!r.ok) throw r; return r.json(); })
+        .then(function () {
+          try { localStorage.setItem("hsm-handle", h); } catch (e) {}
+          text.value = ""; msg.textContent = "Posted ✓"; update();
+          return fetch(api + "?article=eq." + encodeURIComponent(articleId) + "&select=handle,body,created_at&order=created_at.asc", { headers: headers });
+        })
+        .then(function (r) { return r.json(); })
+        .then(render)
+        .catch(function () { msg.textContent = "Couldn't post. Try again."; update(); });
+    });
   }
 })();
