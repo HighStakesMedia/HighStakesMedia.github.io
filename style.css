@@ -47,7 +47,9 @@
   /* ---------- Breaking ticker ---------- */
   .ticker { display: flex; align-items: stretch; background: var(--surface); border-bottom: 1px solid var(--rule); overflow: hidden; font: 14px var(--sans); }
   .ticker .label { background: var(--accent); color: var(--on-accent); font-weight: 700; padding: 9px 14px; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; flex-shrink: 0; display: flex; align-items: center; }
-  .ticker .track { display: flex; gap: 48px; padding: 9px 0; animation: scroll 40s linear infinite; white-space: nowrap; }
+  .ticker .label { position: relative; z-index: 1; }
+  .ticker .viewport { flex: 1; min-width: 0; overflow: hidden; }   /* headlines scroll inside this, so they slide under the label */
+  .ticker .track { display: flex; width: max-content; gap: 48px; padding: 9px 48px 9px 0; animation: scroll 40s linear infinite; white-space: nowrap; }
   .ticker .track span::before { content: "♠ "; color: var(--silver); }
   .ticker .track span:nth-child(4n+2)::before { content: "♥ "; color: var(--accent); }
   .ticker .track span:nth-child(4n+3)::before { content: "♦ "; color: var(--silver); }
