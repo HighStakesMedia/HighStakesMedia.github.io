@@ -46,4 +46,16 @@
 
 window.ARTICLES = [
 
+  {
+    title: "Sanmittai Pledge Ongoing Aid as City Struggles to Respond",
+    url: "sanmittai-relief-tournament-grounds.html",
+    date: "2026-11-25",
+    section: "Zenchou",
+    summary: "As the city struggles to answer for last week's outbreak, the Sternritter and Noragami have set up relief tents on the ruined tournament grounds, and say they intend to stay.",
+    author: "Kivriel",
+    image: "images/sanmittai-relief-sunset.jpg",
+    caption: "The sun sets over what remains of the tournament grounds, one week after the outbreak.",
+    lead: true
+  }
+
 ];
