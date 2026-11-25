@@ -8,7 +8,7 @@
 /* ===== Things you might want to change ===== */
 var HSM = {
   /* How readers reach you for tips and ads. Shown on the Submit a Tip and Advertise pages. */
-  contact: "@HighStakesMedia on the SuperNat",
+  contact: "%Gambling_Queen on the SuperNat",
 
   /* The menu. "section" must match the section name you use in articles.js. */
   categories: [
