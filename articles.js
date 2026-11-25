@@ -49,6 +49,20 @@
 window.ARTICLES = [
 
   {
+    title: "Residential Rampage: Tranquil Blades Member Bombs City Block Outside Shindou Investigative",
+    url: "akiko-residential-rampage.html",
+    date: "2026-11-25",
+    section: "Conflicts",
+    also: ["Zenchou", "Politics"],
+    summary: "A woman known as Akiko of the Tranquil Blades set off a string of explosions near the Shindou Investigative building, wounding at least six people who were trying to get her victim to a doctor. Witnesses are now asking why she is walking free.",
+    author: "Kivriel",
+    image: "images/akiko-aftermath-aerial.jpg",
+    caption: "Emergency crews comb through what remains of the block outside Shindou Investigative after Akiko's rampage.",
+    breaking: true,
+    lead: true
+  },
+
+  {
     title: "Sanmittai Pledge Ongoing Aid as City Struggles to Respond",
     url: "sanmittai-relief-tournament-grounds.html",
     date: "2026-11-25",
