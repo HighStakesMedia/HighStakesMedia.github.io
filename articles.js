@@ -59,7 +59,7 @@ window.ARTICLES = [
     image: "images/akiko-aftermath-aerial.jpg",
     caption: "Emergency crews comb through what remains of the block outside Shindou Investigative after Akiko's rampage.",
     breaking: true,
-    lead: true
+    topStory: true
   },
 
   {
