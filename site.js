@@ -83,7 +83,7 @@ var HSM = {
     '</div></header>' +
     '<nav><ul>' + nav + '</ul></nav>' +
     '<div class="ticker" id="ticker" aria-label="Breaking news" hidden>' +
-      '<div class="label">Breaking</div><div class="track" id="tickerTrack"></div></div>';
+      '<div class="label">Breaking</div><div class="viewport"><div class="track" id="tickerTrack"></div></div></div>';
 
   /* ---------- Footer ---------- */
   var half = Math.ceil(HSM.categories.length / 2);
