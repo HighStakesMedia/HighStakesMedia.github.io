@@ -25,8 +25,8 @@ var HSM = {
   /* Comments on article pages. They're saved in a free Supabase database.
      Until these two are filled in, the comment box shows but can't post. */
   comments: {
-    supabaseUrl: "",   /* e.g. "https://abcdefgh.supabase.co" */
-    supabaseKey: ""    /* the project's public "anon" key */
+    supabaseUrl: "https://acbdvurrdxlujkhqghno.supabase.co",
+    supabaseKey: "sb_publishable_msa6-JrVWjF_RvXazXQZ-w_VisRLxTc"   /* public "publishable" key. Never put a secret key here. */
   }
 };
 
@@ -240,7 +240,9 @@ var HSM = {
     if (!box) return;
     var cfg = HSM.comments || {}, live = !!(cfg.supabaseUrl && cfg.supabaseKey);
     var api = (cfg.supabaseUrl || "").replace(/\/$/, "") + "/rest/v1/comments";
-    var headers = { "apikey": cfg.supabaseKey, "Authorization": "Bearer " + cfg.supabaseKey, "Content-Type": "application/json" };
+    var headers = { "apikey": cfg.supabaseKey, "Content-Type": "application/json" };
+    /* Older "anon" keys also go in the Authorization header; new sb_publishable keys must not. */
+    if (/^eyJ/.test(cfg.supabaseKey || "")) headers["Authorization"] = "Bearer " + cfg.supabaseKey;
 
     box.innerHTML =
       '<div class="section-title">Comments <span id="commentCount"></span></div>' +
