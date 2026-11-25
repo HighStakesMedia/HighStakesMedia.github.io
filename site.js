@@ -247,7 +247,7 @@ var HSM = {
       '<form class="comment-form" id="commentForm" novalidate>' +
         '<label for="cHandle">SuperNat handle <span class="req">required</span></label>' +
         '<div class="handle-field"><span class="handle-prefix" aria-hidden="true">%</span>' +
-        '<input id="cHandle" type="text" maxlength="100" placeholder="Username" autocomplete="nickname" spellcheck="false" aria-label="SuperNat handle, after the %"></div>' +
+        '<input id="cHandle" type="text" maxlength="200" placeholder="Username" autocomplete="nickname" spellcheck="false" aria-label="SuperNat handle, after the %"></div>' +
         '<label for="cText">Comment</label>' +
         '<textarea id="cText" rows="4" maxlength="1500" placeholder="Join the conversation…" disabled></textarea>' +
         '<div class="comment-actions"><span class="comment-msg" id="cMsg"></span>' +
@@ -263,7 +263,7 @@ var HSM = {
       return Array.from(v).length;
     }
     function cleanHandle(v) { return "%" + (v || "").replace(/^%+/, "").trim(); }
-    function validHandle(h) { var n = chars(h.slice(1)); return n >= 1 && n <= 32; }
+    function validHandle(h) { var n = chars(h.slice(1)); return n >= 1 && n <= 64; }
     function update() {
       var ok = validHandle(cleanHandle(handle.value));
       text.disabled = !ok;
@@ -305,7 +305,7 @@ var HSM = {
     $("commentForm").addEventListener("submit", function (e) {
       e.preventDefault();
       var h = cleanHandle(handle.value), b = text.value.trim();
-      if (!validHandle(h)) { msg.textContent = "Enter your SuperNat handle (up to 32 characters)."; return; }
+      if (!validHandle(h)) { msg.textContent = "Enter your SuperNat handle (up to 64 characters)."; return; }
       if (!b) return;
       if (!live) { msg.textContent = "Comments aren't connected yet."; return; }
       post.disabled = true; msg.textContent = "Posting…";
