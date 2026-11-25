@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  /* Apply saved theme before the page draws, so there is no flash. Dark is the default. */
+  try { if (localStorage.getItem("hsm-theme") === "light") document.documentElement.setAttribute("data-theme", "light"); } catch (e) {}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27 fill=%27%23d4af37%27%3E%E2%99%A0%3C/text%3E%3C/svg%3E">
+<title>Article — High Stakes Media</title>
+<meta name="description" content="High Stakes Media: independent reporting on the Spiritual Adepts of Zenchou.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<!--
+  ======================================================================
+  ARTICLE TEMPLATE
+  1. Copy this file and rename it, e.g. vermilion-pavilion.html
+  2. Add an entry for it in articles.js with  url: "vermilion-pavilion.html"
+     The headline, section, summary, byline and date fill in from there.
+     (Or type them straight into the boxes below. Anything you type wins.)
+  3. Replace the example body text and pictures below with your story.
+  ======================================================================
+-->
+<body data-page="article">
+<div id="site-header"></div>
+
+<main>
+  <div class="wrap grid">
+    <article>
+      <header class="article-head">
+        <span class="tag" id="articleSection"></span>
+        <h1 id="articleTitle"></h1>
+        <p class="dek" id="articleDek"></p>
+        <p class="byline" id="articleByline"></p>
+      </header>
+
+      <!-- ===== TOP PICTURE OR VIDEO (pick one, delete the others) ===== -->
+
+      <!-- Picture: upload the image to your repo (an "images" folder works well) and put its name in src -->
+      <figure class="media">
+        <div class="media-slot">Lead picture goes here</div>
+        <!-- <img src="images/your-picture.png" alt="Describe the picture"> -->
+        <figcaption>Caption for the picture. Photo: High Stakes Media</figcaption>
+      </figure>
+
+      <!-- Video from YouTube: replace VIDEO_ID with the code after "v=" in the YouTube link
+      <figure class="media">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Video" allowfullscreen></iframe></div>
+        <figcaption>Caption for the video.</figcaption>
+      </figure>
+      -->
+
+      <!-- Video file uploaded to your repo (.mp4 works best)
+      <figure class="media">
+        <video src="videos/your-video.mp4" controls playsinline></video>
+        <figcaption>Caption for the video.</figcaption>
+      </figure>
+      -->
+
+      <!-- ===== THE STORY ===== -->
+      <div class="article-body">
+        <p>Write your opening paragraph here. The first letter becomes a large gold drop cap automatically.</p>
+        <p>Each paragraph goes in its own pair of p tags, like this one.</p>
+
+        <h2>A subheading, if you want one</h2>
+        <p>More of the story.</p>
+
+        <!-- A pull quote to highlight a line from the story -->
+        <blockquote class="pullquote">
+          "A striking line from someone in the story."
+          <cite>— Who said it</cite>
+        </blockquote>
+
+        <p>More of the story.</p>
+
+        <!-- A picture in the middle of the story. Copy this block wherever you need one. -->
+        <figure class="media">
+          <div class="media-slot">Picture goes here</div>
+          <!-- <img src="images/another-picture.png" alt="Describe the picture"> -->
+          <figcaption>Caption for this picture.</figcaption>
+        </figure>
+
+        <p>Final paragraph.</p>
+        <div class="article-end" aria-hidden="true">♠ ♥ ♦ ♣</div>
+      </div>
+
+      <!-- Comments: readers must enter a SuperNat handle to post -->
+      <section id="comments"></section>
+
+      <div id="moreFrom" hidden>
+        <div class="section-title" id="moreTitle">More stories</div>
+        <div id="moreList"></div>
+      </div>
+    </article>
+    <aside id="site-sidebar"></aside>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="articles.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
