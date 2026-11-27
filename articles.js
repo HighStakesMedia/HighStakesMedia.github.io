@@ -50,6 +50,20 @@
 window.ARTICLES = [
 
   {
+    title: "Who Holds the Projector? A Closer Look at Project Torukia and the Clan Some Are Calling Zenchou's \"Otherworld Illuminati\"",
+    url: "projectors-guild-torukia.html",
+    date: "2019-05-11",
+    section: "Investigations",
+    also: ["Business"],
+    summary: "The Projector's Guild now owns close to a third of Zenchou's business, and nobody can explain how. A sit-down with its Manager of Combat Operations raises more questions about Project Torukia, and the family behind it.",
+    author: "Kivriel",
+    image: "images/projectors-stock-climb.jpg",
+    caption: "Years of uninterrupted growth for the Projector's Guild... until this April.",
+    breaking: true,
+    lead: true
+  },
+
+  {
     title: "Residential Rampage: Tranquil Blades Member Bombs City Block Outside Shindou Investigative",
     url: "akiko-residential-rampage.html",
     date: "2019-05-05",
