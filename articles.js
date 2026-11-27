@@ -12,7 +12,8 @@
   Fields:
     title     Headline (required)
     url       The article's file name (required)
-    date      "YYYY-MM-DD". Newest dates show first.
+    date      "YYYY-MM-DD". Newest dates show first. Use the IN-GAME date
+              (1 real day = 4 in-game days).
     section   Which section page it appears on. Use one of these exactly:
               "World", "Zenchou", "Business", "Conflicts", "Politics",
               "Investigations", "Opinion", "Life & Arts"
@@ -34,7 +35,7 @@
   {
     title: "Inside the Night the Vermilion Pavilion Burned",
     url: "vermilion-pavilion.html",
-    date: "2026-11-25",
+    date: "2019-05-11",
     section: "Investigations",
     summary: "Three survivors break their silence on the duel that left the hall in ashes.",
     author: "Your Journalist",
@@ -51,7 +52,7 @@ window.ARTICLES = [
   {
     title: "Residential Rampage: Tranquil Blades Member Bombs City Block Outside Shindou Investigative",
     url: "akiko-residential-rampage.html",
-    date: "2026-11-25",
+    date: "2019-05-05",
     section: "Conflicts",
     also: ["Zenchou", "Politics"],
     summary: "A woman known as Akiko of the Tranquil Blades set off a string of explosions near the Shindou Investigative building, wounding at least six people who were trying to get her victim to a doctor. Witnesses are now asking why she is walking free.",
@@ -65,7 +66,7 @@ window.ARTICLES = [
   {
     title: "Sanmittai Pledge Ongoing Aid as City Struggles to Respond",
     url: "sanmittai-relief-tournament-grounds.html",
-    date: "2026-11-25",
+    date: "2019-05-04",
     section: "Zenchou",
     also: ["Politics"],
     summary: "As the city struggles to answer for last week's outbreak, the Sternritter and Noragami have set up relief tents on the ruined tournament grounds, and say they intend to stay.",
