@@ -87,7 +87,9 @@ window.ARTICLES = [
     author: "Kivriel",
     image: "images/sanmittai-relief-sunset.jpg",
     caption: "The sun sets over what remains of the tournament grounds, one week after the outbreak.",
-    lead: true
+    topStory: true,
+    breaking: true,
+    lead: false
   }
 
 ];
