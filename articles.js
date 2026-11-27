@@ -54,7 +54,7 @@ window.ARTICLES = [
     url: "projectors-guild-torukia.html",
     date: "2019-05-11",
     section: "Investigations",
-    also: ["Business"],
+    also: ["Zenchou", "Business"],
     summary: "The Projector's Guild now owns close to a third of Zenchou's business, and nobody can explain how. A sit-down with its Manager of Combat Operations raises more questions about Project Torukia, and the family behind it.",
     author: "Kivriel",
     image: "images/projectors-stock-climb.jpg",
